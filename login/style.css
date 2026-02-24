@@ -1,149 +1,120 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
 }
 
 body {
+    margin: 0;
     min-height: 100vh;
-    background-image: url("loginbackground.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    transition: background-size 0.3s ease;
+    font-family: "Segoe UI", sans-serif;
+    background: url("loginbackground.jpg") center / cover no-repeat fixed;
+    color: #0f172a;
+    position: relative;
 }
 
-
-/* main container */
-.container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 40px;
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(15, 23, 42, 0.78), rgba(37, 99, 235, 0.55));
+    backdrop-filter: blur(1.5px);
+    z-index: 0;
 }
 
-/* login card */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.info-panel,
 .login-card {
-    width: 360px;
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    animation: fadeSlideUp 650ms ease both;
 }
 
-.login-card h2 {
-    margin-bottom: 15px;
+.info-panel {
+    background: rgba(248, 250, 252, 0.93);
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.22);
 }
 
-/* tabs */
+.feature-tile {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.8rem;
+    background: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+.login-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+}
+
 .tabs {
-    display: flex;
-    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
 }
 
 .tab {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    background: #eaeaea;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.55rem;
+    background: #f8fafc;
+    color: #334155;
     font-weight: 600;
-    transition: 0.3s;
+    padding: 0.6rem;
+    transition: all 0.25s ease;
 }
 
-.tab.active {
+.tab.active,
+.tab:hover {
     background: #0d6efd;
-    color: white;
+    color: #fff;
+    border-color: #0d6efd;
+    transform: translateY(-1px);
 }
 
-/* form */
-label {
-    font-size: 14px;
-    margin-top: 10px;
-    display: block;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-/* actions */
-.actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.login-btn {
-    padding: 10px 22px;
-    background: #0d6efd;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    flex-shrink: 0;
+.form-control:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
 }
 
 .forgot {
-    font-size: 13px;
-    text-decoration: none;
     color: #0d6efd;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
 
 .forgot:hover {
     text-decoration: underline;
 }
 
-/* ========================= */
-/* 📱 MOBILE RESPONSIVE PART */
-/* ========================= */
-
-@media (max-width: 768px) {
-
-    .container {
-        justify-content: center;
-        padding: 20px;
-        background: rgba(0,0,0,0.45);
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
     }
-
-    .login-card {
-        width: 100%;
-        max-width: 380px;
-        padding: 22px;
-    }
-
-    .actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .login-btn {
-        width: 100%;
-    }
-
-    .forgot {
-        text-align: center;
-        margin-top: 10px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* 📱 Extra small devices */
-@media (max-width: 420px) {
-
-    .login-card {
-        padding: 18px;
+@media (max-width: 991px) {
+    body {
+        background-attachment: scroll;
     }
 
-    .tab {
-        font-size: 14px;
-        padding: 8px;
+    .info-panel {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .tabs {
+        grid-template-columns: 1fr;
     }
 }
